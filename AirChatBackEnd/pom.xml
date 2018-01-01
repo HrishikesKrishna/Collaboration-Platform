@@ -12,7 +12,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  	<spring.version>4.0.1.RELEASE</spring.version>
+  	<spring.version>4.3.3.RELEASE</spring.version>
  	 <hibernate.version>4.3.5.Final</hibernate.version>
 		<slf4j.version>1.7.5</slf4j.version>
   </properties>
@@ -85,6 +85,12 @@
             <artifactId>ojdbc7</artifactId>
             <version>12.1.0</version>
         </dependency>
+    <!-- https://mvnrepository.com/artifact/javax.el/el-api -->
+<dependency>
+    <groupId>javax.el</groupId>
+    <artifactId>el-api</artifactId>
+    <version>2.2</version>
+</dependency>
     
     
     

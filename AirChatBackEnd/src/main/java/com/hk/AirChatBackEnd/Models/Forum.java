@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.stereotype.Component;
 @Entity
 @Component
@@ -21,9 +22,10 @@ public class Forum implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 @Id
-@GeneratedValue
+@GeneratedValue(generator = "uuid.hex")
+@GenericGenerator(name = "uuid.hex", strategy = "uuid.hex")
 @Column(name="ForumID",nullable=false)
-private int forumId;
+private String forumId;
 @Column(name="ForumName",nullable=false)
 private String forumName;
 @Column(name="ForumContent",nullable=false)
@@ -35,10 +37,11 @@ private Date createdDate;
 @Column(name="Status",nullable=false)
 private String status;
 
-public int getForumId() {
+
+public String getForumId() {
 	return forumId;
 }
-public void setForumId(int forumId) {
+public void setForumId(String forumId) {
 	this.forumId = forumId;
 }
 public String getForumName() {

@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.stereotype.Component;
 
 @Entity
@@ -21,9 +22,10 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(generator = "uuid.hex")
+	@GenericGenerator(name = "uuid.hex", strategy = "uuid.hex")
 	@Column(name="UserId",nullable=false)
-	private int userId;
+	private String userId;
 	@Column(name="FirstName",nullable=false) 
 	private String firstName;
 	@Column(name="LastName",nullable=false)
@@ -39,10 +41,11 @@ public class User implements Serializable {
 	@Column(name="Online_Status",nullable=false)
 	private String isOnline;
 	
-	public int getUserId() {
+	
+	public String getUserId() {
 		return userId;
 	}
-	public void setUserId(int userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 	public String getFirstName() {

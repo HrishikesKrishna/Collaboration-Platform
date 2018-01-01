@@ -1,4 +1,5 @@
 package com.hk.AirChatBackEnd.config;
+import java.util.Date;
 import java.util.Properties;
 import javax.sql.DataSource;
 
@@ -35,7 +36,7 @@ public class DatabaseConfiguration {
 
 		
 			    @Autowired
-			    @Bean(name="sF")
+			    @Bean(name="dataSource")
 			    public SessionFactory sF(DataSource dataSource) {
 			        LocalSessionFactoryBuilder sessionBuilder  = new LocalSessionFactoryBuilder(dataSource);
 			        /*sessionBuilder.setProperty("hibernate.show_sql", "true");*/
@@ -103,4 +104,26 @@ public class DatabaseConfiguration {
 			    	System.out.println("ForumDao object created");
 			    	return new ForumDAOImpl(sf);
 			    }
+			    
+			    public static void main(String[] args) {
+					Blog blog=new Blog();
+					blog.setBlogname("abcd");
+					blog.setBlogcontent("hrishi");
+					blog.setUsername("krishna");
+					blog.setStatus("Online");
+					blog.setLikes(8);
+					blog.setCreateddate(new Date());
+					DatabaseConfiguration cd=new DatabaseConfiguration();
+					System.out.println(cd.dataSource());
+					Session session = cd.sF(cd.dataSource()).openSession();
+				    session.beginTransaction();
+				    session.save(blog);
+
+				   
+				    session.getTransaction().commit();
+				    session.close();
+					 
+				}   
+			    
+			    
 			}
