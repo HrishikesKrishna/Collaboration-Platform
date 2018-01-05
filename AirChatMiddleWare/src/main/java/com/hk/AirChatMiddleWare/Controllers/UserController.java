@@ -20,6 +20,7 @@ public class UserController {
 	@PostMapping(value="/insertUser")
 	public ResponseEntity<User> insertUser(@RequestBody User user)
 	{
+		System.out.println(user);
 		if(userdao.addUser(user))
 		{
 			return new ResponseEntity<User>(user,HttpStatus.OK);

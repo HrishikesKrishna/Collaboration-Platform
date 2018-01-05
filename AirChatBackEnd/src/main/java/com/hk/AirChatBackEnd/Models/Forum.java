@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -22,8 +23,7 @@ public class Forum implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 @Id
-@GeneratedValue(generator = "uuid.hex")
-@GenericGenerator(name = "uuid.hex", strategy = "uuid.hex")
+@GeneratedValue(strategy=GenerationType.AUTO)
 @Column(name="ForumID",nullable=false)
 private String forumId;
 @Column(name="ForumName",nullable=false)

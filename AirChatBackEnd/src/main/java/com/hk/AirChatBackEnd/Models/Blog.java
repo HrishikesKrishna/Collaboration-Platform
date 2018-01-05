@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -23,8 +24,9 @@ import org.springframework.stereotype.Component;
  		
 		 
 		@Id
-		@GeneratedValue(strategy=GenerationType.TABLE)
- 		private int blogid;
+		@GeneratedValue(strategy=GenerationType.SEQUENCE,generator = "SEQUENCE_NAME")
+		@SequenceGenerator(name = "SEQUENCE_NAME", sequenceName = "SEQUENCE_NAME", allocationSize = 1, initialValue = 1)
+		private int blogid;
 		@Column(name = "Blogname", nullable = false)
 	    private String blogname;
 		@Column(name = "BlogContent", nullable = false)
@@ -80,6 +82,11 @@ import org.springframework.stereotype.Component;
 		}
 		public void setLikes(int likes) {
 			this.likes = likes;
+		}
+		@Override
+		public String toString() {
+			return "Blog [blogid=" + blogid + ", blogname=" + blogname + ", blogcontent=" + blogcontent + ", username="
+					+ username + ", createddate=" + createddate + ", status=" + status + ", likes=" + likes + "]";
 		}
 		
 

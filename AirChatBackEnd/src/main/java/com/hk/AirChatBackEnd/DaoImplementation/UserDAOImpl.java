@@ -80,6 +80,7 @@ public class UserDAOImpl implements UserDAO {
 		ssn.close();
 		return user;
 	}
+	@Transactional
 	@Override
 	public List<User> getAllUsers() {
 		// TODO Auto-generated method stub
@@ -87,7 +88,7 @@ public class UserDAOImpl implements UserDAO {
 		List<User> userList=(List<User>)ssn.createQuery("from User").list();
 		ssn.close();
 		return userList;
-		
 	}
+	
 	
 }

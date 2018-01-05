@@ -23,13 +23,16 @@ public class BlogDAOImpl implements BlogDAO{
 	@Transactional
 	//@Override
 	public boolean addBlog(Blog blog) {
+		System.out.println(blog);
 		// TODO Auto-generated method stub
 		try
 		{
 			sF.getCurrentSession().save(blog);
 			return true;
 		}
-		catch(Exception e) {
+		catch(Exception e) 
+		{
+			System.out.println(e.getMessage());
 		return false;
 		}
 	}

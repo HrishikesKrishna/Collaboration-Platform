@@ -1,9 +1,21 @@
-var myapp=angular.module("myApp",["ngRoute"]);
+var myapp = angular.module("AirChat", ["ngRoute"]);
+myapp.config(["$routeProvider","$locationProvider", function ($routeProvider,$locationProvider) {
+    $routeProvider
 
-myapp.config(function($routeProvider)
-{
-	$routeProvice.when("/",{templateUrl:"index.html"})
-				 .when("#/Blog",{templateUrl:"Blog.html"})
-				 .when("#/Forum",{templateUrl:"Forum.html"});
-				 .when("#/User",{templateUrl:"User.html"});
-});
+    .when('/', {
+        templateUrl : "homepage.html"
+    })
+    .when("/blog", {
+        templateUrl : "BLOG/Blog.html"
+    })
+    .when("/home", {
+        templateUrl : "homepage.html"
+    })
+     .when("/login", {
+        templateUrl : "USER/User.html"
+    })
+    .when("/forum", {
+        templateUrl : "forum.html"
+    }).otherwise({redirectTo: '/'});
+    $locationProvider.hashPrefix('');
+}]);

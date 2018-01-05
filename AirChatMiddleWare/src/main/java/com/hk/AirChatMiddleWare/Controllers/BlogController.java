@@ -1,5 +1,7 @@
 package com.hk.AirChatMiddleWare.Controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,12 +25,13 @@ public class BlogController {
 	public ResponseEntity<String> insertBlog(@RequestBody Blog blog)
 	{
 		blog.setCreateddate(new java.util.Date());
+		System.out.println("Blog : "+blog);
 		if(blogDAO.addBlog(blog))
 		{
-			return new ResponseEntity<String>("Blog Added Succesfully",HttpStatus.OK);
+			return new ResponseEntity<String>("Blog Added Succesfully"+blog,HttpStatus.OK);
 		}
 		else{
-		return new ResponseEntity<String>("Blog Not Added",HttpStatus.BAD_GATEWAY);
+		return new ResponseEntity<String>("Blog Not Added....",HttpStatus.BAD_GATEWAY);
 		}
 	}
 	@GetMapping(value="/deleteblog/{bid}")
@@ -80,5 +83,9 @@ public class BlogController {
 			return new ResponseEntity<Blog>(tempblog,HttpStatus.OK);
 		}
 	}
-	
+	@GetMapping(value="/getAllBlogs")
+	public ResponseEntity<List<Blog>> getAllBlogs(){
+		List<Blog> blogl=(List<Blog>)blogDAO.getAllBlogs();
+		return new ResponseEntity<List<Blog>>(blogl,HttpStatus.OK);
+	}
 }

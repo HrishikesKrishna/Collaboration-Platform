@@ -5,10 +5,11 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.GenericGenerator;
 import org.springframework.stereotype.Component;
 
 @Entity
@@ -22,10 +23,10 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(generator = "uuid.hex")
-	@GenericGenerator(name = "uuid.hex", strategy = "uuid.hex")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator = "SEQUENCE_NAME")
+	@SequenceGenerator(name = "SEQUENCE_NAME", sequenceName = "SEQUENCE_NAME", allocationSize = 1, initialValue = 1)
 	@Column(name="UserId",nullable=false)
-	private String userId;
+	private int userId;
 	@Column(name="FirstName",nullable=false) 
 	private String firstName;
 	@Column(name="LastName",nullable=false)
@@ -42,10 +43,10 @@ public class User implements Serializable {
 	private String isOnline;
 	
 	
-	public String getUserId() {
+	public int getUserId() {
 		return userId;
 	}
-	public void setUserId(String userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 	public String getFirstName() {
