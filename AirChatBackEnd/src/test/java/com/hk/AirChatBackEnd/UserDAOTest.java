@@ -90,4 +90,6 @@ public class UserDAOTest {
 		User user=(User)userDAO.getUser(10);
 		assertTrue("Problem in deleting User",userDAO.deleteUser(user));
 	}
+	
+	
 }

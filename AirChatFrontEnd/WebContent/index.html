@@ -15,10 +15,19 @@
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="#/!">Home</a></li>
-      <li><a href="#/login">Login</a></li>
-      <li><a href="#/blog">BLOG</a></li>
-      <li><a href="#/forum">FORUM</a>
-      <li><a href="#/friends">FRIENDS</a>
+      <li><div data-ng-hide="currentUser.role=='ROLE_ADMIN'||currentUser.role=='ROLE_USER'">
+      <a href="#/login">Login</a>
+      </div></li>
+      <li><div data-ng-show="currentUser.role=='ROLE_ADMIN'||currentUser.role=='ROLE_USER'">
+      <a href="#/blog">BLOG</a>
+      <a href="#/forum">FORUM</a>
+      <a href="#/friends">FRIENDS</a>
+      </div>
+    </ul>
+    
+    <ul class="nav navbar-right">
+    	<li><div data-ng-show="currentUser.role=='ROLE_ADMIN'||currentUser.role=='ROLE_USER'">
+    	<a>{{currentUser.emailId}}</a></div></li>
     </ul>
   </div>
 </nav>

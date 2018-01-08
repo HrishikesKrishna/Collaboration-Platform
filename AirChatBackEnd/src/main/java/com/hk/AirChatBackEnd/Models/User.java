@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 @Entity
 @Component
 @Table(name="USERS")
-public class User implements Serializable {
+public class User extends BaseDomain implements Serializable {
 
 	/**
 	 * 

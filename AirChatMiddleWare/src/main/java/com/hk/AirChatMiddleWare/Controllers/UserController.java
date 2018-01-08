@@ -1,5 +1,7 @@
 package com.hk.AirChatMiddleWare.Controllers;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,4 +32,25 @@ public class UserController {
 		return new ResponseEntity<User>(user,HttpStatus.BAD_REQUEST);	
 		}
 	}
+	
+	@PostMapping(value="/login")
+	public ResponseEntity<User> login(@RequestBody User user,HttpSession http)
+	{
+			if(userdao.login(user))
+			{
+				User tempuser=userdao.getUserbyemailId(user.getEmailId());
+				tempuser.setIsOnline("ONLINE");
+				userdao.updateStatus(tempuser);
+				tempuser.setErrorCode(200);
+				tempuser.setErrorMessage("Login Success");
+				http.setAttribute("currentUser", tempuser);
+				return new ResponseEntity<User>(tempuser,HttpStatus.OK);
+			}
+			else
+			{
+				return new ResponseEntity<User>(user,HttpStatus.BAD_GATEWAY);
+			}		
+	}
+	@PostMapping(value="/logout")
+	public ResponseEntity<User> logout(@RequestBody User user,Http)
 }

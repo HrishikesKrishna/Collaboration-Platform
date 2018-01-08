@@ -10,6 +10,8 @@ public boolean updateUser(User user);
 public boolean deleteUser(User user);
 public boolean updateStatus(User user);
 public User getUser(int userId);
+public User getUserbyemailId(String email);
 public List<User> getAllUsers();
+public boolean login(User user);
 
 }
