@@ -1,4 +1,4 @@
-myapp.controller("UserController",function($scope,$http){
+myapp.controller("UserController",function($scope,$http,$location,$rootScope,$cookieStore){
 $scope.User={firstName:"",lastName:"",password:"",emailId:"",role:"ROLE_USER",status:"P",isOnline:"OFFLINE"}
 	
 $scope.insertUser=function()
@@ -21,11 +21,28 @@ $scope.login=function()
 	{
 		$scope.user=response.data;
 		$rootScope.currentUser=response.data;
-		console.log('Role:'+$rootscope.currentUser.role);
+		console.log('Role:'+$rootScope.currentUser.role);
+		$cookieStore.put('currentUser',$rootScope.currentUser)
+		$location.path("/blog")
 	})
 	,(function(error)
 	{
 		console.log('user not logged in');
+	});
+}
+$scope.logout=function()
+{
+	console.log($rootScope.currentUser.emailId)
+	$http.get('http://localhost:8080/AirChatMiddleWare/user/logout/'+$rootScope.currentUser['emailId'])
+	.then(function(response)
+	{
+		alert(response.data)
+		$cookieStore.remove('currentUser')
+		$rootScope.currentUser={}
+		$location.path("/")
+	},function(error)
+	{
+		
 	});
 }
 });

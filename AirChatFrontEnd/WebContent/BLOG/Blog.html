@@ -1,16 +1,20 @@
 
 <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 
-<h1>Create New Blog</h1>
 <div data-ng-controller='BlogController'>
 <div class="container">
 	<div class="row">
+
 		<form role="form" id="contact-form" class="contact-form" data-ng-submit=insertBlog()>
                     <div class="row">
+                    	<div class="col-md-12">
+                    	<h3>Create New Blog</h3>
+                    	</div>
                 		<div class="col-md-6">
-                  		<div class="form-group">
+                		<div class="form-group">
                             <input type="text" class="form-control" name="Blog Name" autocomplete="off" id="Blog Name" placeholder="Enter MYBlog Name"data-ng-model="Blog.blogname">
                   		</div>
                   	</div>
@@ -29,22 +33,32 @@
                   </div>
                 </form>
 	</div>
+	<div class="row">
+	<div data-ng-repeat="blog in blogl">
+	<div class="col-md-6">
+		<div class="w3-grey w3-hover-shadow" style="width:450px;margin-top:2vh;">
+    <header class="w3-container w3-grey">
+      <h3>{{blog.blogname}}</h3>
+    </header>
 
-<div class="row">
-<div class="card card-body">
-    <h4 class="card-title">Panel title</h4>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <div class="flex-row">
-        <a class="card-link">Card link</a>
-        <a class="card-link">Another link</a>
+    <div class="w3-container w3-white">
+      <p>{{blog.blogcontent|limitTo:110}}</p>
     </div>
-</div></div>
-<div class="row">
-<div class="panel panel-default">
-  <div class="panel-body">Panel Content</div>
-  <div class="panel-footer">Panel Footer</div>
-</div>
-</div>
-</div>
-</div>
+
+    <footer class="w3-container w3-white">
+    <div class="btn-group"> <a  data-ng-click="view(blog.blogid)" class="btn btn-default">{{blog.blogcontent.length > 110 ? 'View Blog' : ''}}</a> </div>
+</footer>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+
+
+
+
+
+
+
 

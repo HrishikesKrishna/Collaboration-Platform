@@ -63,7 +63,6 @@ public class UserDAOImpl implements UserDAO {
 	public boolean updateStatus(User user) {
 		// TODO Auto-generated method stub
 		try{
-			user.setStatus("Online");
 			sF.getCurrentSession().update(user);
 			return true;
 		}catch(Exception e){
@@ -137,6 +136,8 @@ public class UserDAOImpl implements UserDAO {
 		}
 		return user;
 	}
+	
+	
 	
 	
 

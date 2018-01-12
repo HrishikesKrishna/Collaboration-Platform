@@ -14,21 +14,25 @@
     <div class="navbar-header">
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#/!">Home</a></li>
-      <li><div data-ng-hide="currentUser.role=='ROLE_ADMIN'||currentUser.role=='ROLE_USER'">
+      <li class="active"><a href="#/!">AirChat</a></li>
+      <li data-ng-show="!currentUser.emailId">
       <a href="#/login">Login</a>
-      </div></li>
-      <li><div data-ng-show="currentUser.role=='ROLE_ADMIN'||currentUser.role=='ROLE_USER'">
-      <a href="#/blog">BLOG</a>
-      <a href="#/forum">FORUM</a>
-      <a href="#/friends">FRIENDS</a>
-      </div>
+      </li>
+      <li data-ng-show="currentUser.emailId">
+      <a href="#/blog">BLOG</a></li>
+      <li data-ng-show="currentUser.emailId">
+      <a href="#/forum">FORUM</a></li>
+      <li data-ng-show="currentUser.emailId">
+      <a href="#/friends">FRIENDS</a></li>
+      </ul>
+      
+    
+    
+    <ul class="nav navbar-nav navbar-right">
+    	<li data-ng-show="currentUser.emailId"><a>{{currentUser.emailId}}</a></li>
+    	<li data-ng-show="currentUser.emailId" data-ng-click="logout()" data-ng-controller="UserController"><a href="">Logout</a></li>
     </ul>
     
-    <ul class="nav navbar-right">
-    	<li><div data-ng-show="currentUser.role=='ROLE_ADMIN'||currentUser.role=='ROLE_USER'">
-    	<a>{{currentUser.emailId}}</a></div></li>
-    </ul>
   </div>
 </nav>
 <div>
@@ -39,6 +43,8 @@
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.min.js"></script>
+<script src="Resources/angular-cookies.js"></script>
+<script src="Resources/angular-cookies.min.js"></script>
 <script src="RouteConfig.js"></script>
 <script src="BLOG/BlogController.js"></script>
 <script src="USER/UserController.js"></script>

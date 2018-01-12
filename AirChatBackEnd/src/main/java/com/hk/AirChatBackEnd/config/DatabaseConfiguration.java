@@ -105,6 +105,7 @@ public class DatabaseConfiguration {
 			    	return new ForumDAOImpl(sf);
 			    }
 			    
+			    
 			    public static void main(String[] args) {
 					Blog blog=new Blog();
 					blog.setBlogname("abcd");

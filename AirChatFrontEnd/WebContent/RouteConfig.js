@@ -1,4 +1,4 @@
-var myapp = angular.module("AirChat", ["ngRoute"]);
+var myapp = angular.module("AirChat", ["ngRoute","ngCookies"]);
 myapp.config(["$routeProvider","$locationProvider", function ($routeProvider,$locationProvider) {
     $routeProvider
 
@@ -16,6 +16,19 @@ myapp.config(["$routeProvider","$locationProvider", function ($routeProvider,$lo
     })
     .when("/forum", {
         templateUrl : "forum.html"
-    }).otherwise({redirectTo: '/'});
+    })
+    .when("/viewblog",{
+    	templateUrl : "BLOG/BlogRead.html"
+    })
+    .otherwise({redirectTo: '/'});
     $locationProvider.hashPrefix('');
 }]);
+
+
+
+
+myapp.run(function($rootScope,$cookieStore)
+{
+	$rootScope.currentUser=$cookieStore.get("currentUser")||{};
+	
+});

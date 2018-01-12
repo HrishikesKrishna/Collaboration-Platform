@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hk.AirChatBackEnd.Dao.BlogDAO;
 import com.hk.AirChatBackEnd.Models.Blog;
+import com.hk.AirChatBackEnd.Models.BlogComment;
+import com.hk.AirChatBackEnd.Util.Date_Time;
 
 @RestController
 @RequestMapping("/blog")
@@ -70,6 +72,7 @@ public class BlogController {
 			return new ResponseEntity<String>("Blog not rejected",HttpStatus.BAD_REQUEST);
 		}
 	}
+	
 	@GetMapping(value="/getBlog/{bid}")
 	public ResponseEntity<Blog> getBlog(@PathVariable("bid")int blogid)
 	{
@@ -83,9 +86,34 @@ public class BlogController {
 			return new ResponseEntity<Blog>(tempblog,HttpStatus.OK);
 		}
 	}
+	
 	@GetMapping(value="/getAllBlogs")
 	public ResponseEntity<List<Blog>> getAllBlogs(){
 		List<Blog> blogl=(List<Blog>)blogDAO.getAllBlogs();
 		return new ResponseEntity<List<Blog>>(blogl,HttpStatus.OK);
 	}
+	
+	@GetMapping(value="/insertBlogComment/{blogid}/{emailId}/{comment}")
+	public ResponseEntity<String> addBlogComment(@PathVariable("blogid")int blogid,@PathVariable("emailId")String emailId,@PathVariable("comment")String comment)
+	{
+		System.out.println(blogid+emailId+comment);
+		BlogComment bc=new BlogComment();
+		bc.setBlogID(blogid);
+		bc.setUserName(emailId);
+		bc.setComment(comment);
+		Date_Time dt=new Date_Time();
+		String date=dt.getDateTime();
+		bc.setCommentDate(date);
+		boolean isSaved=blogDAO.addBlogComment(bc);
+		if(isSaved){
+			return new ResponseEntity<String>("BlogComment added succesfully",HttpStatus.OK);
+		}
+		else
+		{
+			return new ResponseEntity<String>("Problem in adding blog comment",HttpStatus.BAD_REQUEST);
+		}
+	
+	}
+	
+	
 }

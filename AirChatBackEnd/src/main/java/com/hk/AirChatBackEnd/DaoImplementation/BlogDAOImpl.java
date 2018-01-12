@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.hk.AirChatBackEnd.Dao.BlogDAO;
 import com.hk.AirChatBackEnd.Models.Blog;
+import com.hk.AirChatBackEnd.Models.BlogComment;
 @Repository("blogDao")
 public class BlogDAOImpl implements BlogDAO{
 
@@ -110,4 +111,30 @@ public class BlogDAOImpl implements BlogDAO{
 		}
 	}
 
+	@Transactional
+	@Override
+	public boolean addBlogComment(BlogComment blogcomment) {
+		// TODO Auto-generated method stub
+		try{
+			sF.getCurrentSession().save(blogcomment);
+			return true;
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+			return false;
+		}
+	}
+
+	@Override
+	public List<BlogComment> getAllBlogComments(int blogid) {
+		// TODO Auto-generated method stub
+		Session ssn=sF.openSession();
+		org.hibernate.Query q=ssn.createQuery("from BlogComment where blogID="+blogid);
+		List<BlogComment> list=(List<BlogComment>)q.list();
+		ssn.close();
+		return list;
+	}
+
+	
 }
