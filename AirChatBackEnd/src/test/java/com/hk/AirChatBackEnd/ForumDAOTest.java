@@ -37,7 +37,7 @@ public class ForumDAOTest {
 		forum.setCreatedDate(new Date());
 		forum.setForumContent("About Hydrogen");
 		forum.setStatus("Excited");
-		forum.setUserId(10);
+		forum.setUserName("hk@gmail.com");
 		assertTrue("Problem in adding Forum",forumDAO.addForum(forum));
 	}
 	@Ignore

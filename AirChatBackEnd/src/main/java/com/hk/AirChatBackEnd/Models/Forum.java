@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -23,25 +24,27 @@ public class Forum implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 @Id
-@GeneratedValue(strategy=GenerationType.AUTO)
+@GeneratedValue(strategy=GenerationType.SEQUENCE,generator = "SEQUENCE_NAME")
+@SequenceGenerator(name = "SEQUENCE_NAME", sequenceName = "SEQUENCE_NAME", allocationSize = 1, initialValue = 1)
 @Column(name="ForumID",nullable=false)
-private String forumId;
+private int forumId;
 @Column(name="ForumName",nullable=false)
 private String forumName;
 @Column(name="ForumContent",nullable=false)
 private String forumContent;
-@Column(name="UserId",nullable=false)
-private int userId;
+@Column(name="UserName",nullable=false)
+private String userName;
 @Column(name="CreatedDate",nullable=false)
 private Date createdDate;
 @Column(name="Status",nullable=false)
 private String status;
 
 
-public String getForumId() {
+
+public int getForumId() {
 	return forumId;
 }
-public void setForumId(String forumId) {
+public void setForumId(int forumId) {
 	this.forumId = forumId;
 }
 public String getForumName() {
@@ -56,11 +59,12 @@ public String getForumContent() {
 public void setForumContent(String forumContent) {
 	this.forumContent = forumContent;
 }
-public int getUserId() {
-	return userId;
+
+public String getUserName() {
+	return userName;
 }
-public void setUserId(int userId) {
-	this.userId = userId;
+public void setUserName(String userName) {
+	this.userName = userName;
 }
 public Date getCreatedDate() {
 	return createdDate;

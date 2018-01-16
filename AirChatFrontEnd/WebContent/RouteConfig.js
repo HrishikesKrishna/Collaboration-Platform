@@ -15,7 +15,7 @@ myapp.config(["$routeProvider","$locationProvider", function ($routeProvider,$lo
         templateUrl : "USER/User.html"
     })
     .when("/forum", {
-        templateUrl : "forum.html"
+        templateUrl : "FORUM/Forum.html"
     })
     .when("/viewblog",{
     	templateUrl : "BLOG/BlogRead.html"

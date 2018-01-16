@@ -114,6 +114,18 @@ public class BlogController {
 		}
 	
 	}
+	@GetMapping(value="/getBlogComments/{blogid}")
+	public ResponseEntity<List<BlogComment>> getBlogComments(@PathVariable("blogid")int blogid){
+		List<BlogComment> blogc=(List<BlogComment>)blogDAO.getAllBlogComments(blogid);
+		if(blogc.isEmpty()){
+			return null;
+		}
+		else
+		{
+		return new ResponseEntity<List<BlogComment>>(blogc,HttpStatus.OK);
+		}
+	}
+			
 	
 	
 }

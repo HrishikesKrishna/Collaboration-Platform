@@ -1,5 +1,5 @@
 myapp.controller("BlogController",function($scope,$http,$location,$rootScope,$cookieStore){
-$scope.Blog={blogname:"",blogcontent:"",username:"kjhj",status:"A",likes:0}
+$scope.Blog={blogname:"",blogcontent:"",username:'abc',status:"A",likes:0}
 $scope.BlogComment={comment:'',blogId:'',userName:''}
 
 function getAllBlogs()
@@ -43,6 +43,18 @@ function getSelectedBlog(blogid)
 	console.log("blog fetched by id")
 },function(error){
 	console.log("blog not fetched")
+});
+	
+	 $http.get("http://localhost:8080/AirChatMiddleWare/blog/getBlogComments/"+blogid)
+		.then(function(response)
+		{
+			
+			$rootScope.blogcomm=response.data;
+			console.log($rootScope.blogcomm)
+			$cookieStore.put('blogcommen',$rootScope.blogcomm);
+		},function(error)
+		{
+		console.log("blog comments not fetched")	
 });
 $location.path('/viewblog')
 }
