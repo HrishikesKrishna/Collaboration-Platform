@@ -13,4 +13,5 @@ public interface BlogDAO {
 	public boolean rejectBlog(Blog blog);
 	public boolean addBlogComment(BlogComment blogcomment);
 	public List<BlogComment> getAllBlogComments(int blogid);
+	public List<Blog> blogRequest();
 }

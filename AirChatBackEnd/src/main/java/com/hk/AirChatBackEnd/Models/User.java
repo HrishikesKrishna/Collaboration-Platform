@@ -41,6 +41,8 @@ public class User extends BaseDomain implements Serializable {
 	private String status;
 	@Column(name="Online_Status",nullable=false)
 	private String isOnline;
+	@Column(name="Image")
+	private String image;
 	
 	
 	public int getUserId() {
@@ -90,6 +92,12 @@ public class User extends BaseDomain implements Serializable {
 	}
 	public void setIsOnline(String isOnline) {
 		this.isOnline = isOnline;
+	}
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 }

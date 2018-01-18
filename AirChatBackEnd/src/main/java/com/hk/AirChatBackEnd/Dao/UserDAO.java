@@ -13,5 +13,10 @@ public User getUser(int userId);
 public User getUserbyemailId(String email);
 public List<User> getAllUsers();
 public boolean login(User user);
-
+public boolean logincheck(User user);
+public boolean emailCheck(User user);
+public List<User> userrequest();
+public boolean approveUser(User user);
+public boolean rejectUser(User user);
+public boolean saveorupdateUser(User user);
 }

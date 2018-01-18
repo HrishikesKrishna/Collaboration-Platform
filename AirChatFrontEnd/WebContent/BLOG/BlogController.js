@@ -1,5 +1,5 @@
 myapp.controller("BlogController",function($scope,$http,$location,$rootScope,$cookieStore){
-$scope.Blog={blogname:"",blogcontent:"",username:'abc',status:"A",likes:0}
+$scope.Blog={blogname:"",blogcontent:"",username:$rootScope.currentUser.emailId,status:"P",likes:0}
 $scope.BlogComment={comment:'',blogId:'',userName:''}
 
 function getAllBlogs()
@@ -70,8 +70,70 @@ $scope.addBlogComment=function()
 	},function(error){
 		console.log("Blog Comment not added")
 	});
+	$location.path('/viewblog')
 }
-
-
-
 });
+
+
+
+myapp.controller("BlogRequestController",function($scope,$http,$location,$rootScope,$cookieStore){
+
+	function fetchBlogReq()
+	{
+		$http.get('http://localhost:8080/AirChatMiddleWare/blog/getBlogReq/')
+		.then(function(response)
+				{
+					$scope.blogreq=response.data;
+					$location.path('/manage')
+					
+				},function(error)
+					{
+						console.log("Blog request not fetched");
+					});
+	}
+	fetchBlogReq();
+
+
+
+
+
+
+	$scope.approveBlog=function(id)
+	{
+		 
+		 
+		console.log("blog approval")
+		 $http.get("http://localhost:8080/AirChatMiddleWare/blog/approveBlog/"+id)
+		 .then(fetchBlogReq(),function(response){
+			 
+			 console.log("blogrequets approved successfully");
+			 $location.path('/manage')
+								
+			},function(error){
+				console.error("Error while accepting blogrequets");
+			});
+		$location.path('/manage')
+
+		 
+	}
+
+
+
+	$scope.rejectBlog=function(id)
+	{
+		 
+		 
+		console.log("in blog request  reject method")
+		 $http.get("http://localhost:8080/AirChatMiddleWare/blog/rejectBlog/"+id)
+		 .then(fetchBlogReq(),function(response){
+			 
+			 console.log("blogrequets rejected  successfully");
+			
+								
+			},function(error){
+				console.error("Error while rejecting blogrequets");
+			});
+		$location.path('/manage')
+		 
+	}
+	});

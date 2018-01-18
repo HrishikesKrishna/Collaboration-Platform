@@ -9,7 +9,11 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hk.AirChatBackEnd.Dao.ForumDAO;
+import com.hk.AirChatBackEnd.Models.Blog;
+import com.hk.AirChatBackEnd.Models.BlogComment;
 import com.hk.AirChatBackEnd.Models.Forum;
+import com.hk.AirChatBackEnd.Models.ForumComment;
+import com.hk.AirChatBackEnd.Models.User;
 
 @Repository("forumDao")
 public class ForumDAOImpl implements ForumDAO {
@@ -57,13 +61,12 @@ public class ForumDAOImpl implements ForumDAO {
 	}
 	
 	@Transactional
-	@Override
 	public Forum getForum(int forumId) {
 		// TODO Auto-generated method stub
-			Session ssn=sF.openSession();
-			Forum forum=(Forum)ssn.get(Forum.class,forumId);
-			ssn.close();
-			return forum;
+		Session ssn=sF.openSession();
+		Forum forum=(Forum)ssn.get(Forum.class, forumId);
+		ssn.close();
+		return forum;
 	}
 	
 	@Transactional
@@ -71,7 +74,7 @@ public class ForumDAOImpl implements ForumDAO {
 	public List<Forum> getAllForums() {
 		// TODO Auto-generated method stub
 		Session ssn=sF.openSession();
-		List<Forum> forumList=(List<Forum>)ssn.createQuery("from Forum").list();
+		List<Forum> forumList=(List<Forum>)ssn.createQuery("from Forum where status='A'").list();
 		ssn.close();
 		return forumList;
 	}
@@ -81,7 +84,7 @@ public class ForumDAOImpl implements ForumDAO {
 	public boolean approveForum(Forum forum) {
 		// TODO Auto-generated method stub
 		try{
-			forum.setStatus("approved");
+			forum.setStatus("A");
 			sF.getCurrentSession().save(forum);
 			return true;
 		}catch(Exception e){
@@ -94,12 +97,47 @@ public class ForumDAOImpl implements ForumDAO {
 	public boolean rejectForum(Forum forum) {
 		// TODO Auto-generated method stub
 		try{
-			forum.setStatus("rejected");
+			forum.setStatus("R");
 			sF.getCurrentSession().save(forum);
 			return true;
 		}catch(Exception e){
 		return false;
 		}
 	}
+
+	@Override
+	public List<Forum> forumRequest() {
+		// TODO Auto-generated method stub
+		Session ssn = sF.openSession();
+		List<Forum> forumreq=(List<Forum>)ssn.createQuery("from Forum where status='P'").list();
+		ssn.close();
+	return forumreq; 
+	}
+	
+	@Transactional
+	@Override
+	public boolean addForumComment(ForumComment forumcomment) {
+		// TODO Auto-generated method stub
+		try{
+			sF.getCurrentSession().save(forumcomment);
+			return true;
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+			return false;
+		}
+	}
+
+	@Override
+	public List<ForumComment> getAllForumComments(int forumId) {
+		// TODO Auto-generated method stub
+		Session ssn=sF.openSession();
+		org.hibernate.Query q=ssn.createQuery("from ForumComment where forumId="+forumId);
+		List<ForumComment> list=(List<ForumComment>)q.list();
+		ssn.close();
+		return list;
+	}
+	
 	
 }

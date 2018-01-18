@@ -81,7 +81,7 @@ public class BlogDAOImpl implements BlogDAO{
 	public List<Blog> getAllBlogs() {
 		// TODO Auto-generated method stub
 		Session ssn=sF.openSession();
-		List<Blog> blogList=(List<Blog>)ssn.createQuery("from Blog").list();
+		List<Blog> blogList=(List<Blog>)ssn.createQuery("from Blog where status='A'").list();
 		ssn.close();
 		return blogList;
 	}
@@ -90,7 +90,7 @@ public class BlogDAOImpl implements BlogDAO{
 	public boolean approveBlog(Blog blog) {
 		// TODO Auto-generated method stub
 		try{
-			blog.setStatus("approved");
+			blog.setStatus("A");
 			sF.getCurrentSession().save(blog);
 			return true;
 		}catch(Exception e){
@@ -103,7 +103,7 @@ public class BlogDAOImpl implements BlogDAO{
 	public boolean rejectBlog(Blog blog) {
 		// TODO Auto-generated method stub
 		try{
-			blog.setStatus("rejected");
+			blog.setStatus("R");
 			sF.getCurrentSession().save(blog);
 			return true;
 		}catch(Exception e){
@@ -134,6 +134,15 @@ public class BlogDAOImpl implements BlogDAO{
 		List<BlogComment> list=(List<BlogComment>)q.list();
 		ssn.close();
 		return list;
+	}
+
+	@Override
+	public List<Blog> blogRequest() {
+		// TODO Auto-generated method stub
+		Session ssn = sF.openSession();
+		List<Blog> blogreq=(List<Blog>)ssn.createQuery("from Blog where status='P'").list();
+		ssn.close();
+	return blogreq; 
 	}
 
 	

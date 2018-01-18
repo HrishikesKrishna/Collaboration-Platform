@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.hk.AirChatBackEnd.Dao.BlogDAO;
 import com.hk.AirChatBackEnd.Models.Blog;
 import com.hk.AirChatBackEnd.Models.BlogComment;
+import com.hk.AirChatBackEnd.Models.Forum;
 import com.hk.AirChatBackEnd.Util.Date_Time;
 
 @RestController
@@ -50,27 +51,31 @@ public class BlogController {
 	public ResponseEntity<String> approveBlog(@PathVariable("bid")int blogid)
 	{
 		Blog tempblog=blogDAO.getBlog(blogid);
-		if(blogDAO.approveBlog(tempblog))
-		{
-			return new ResponseEntity<String>("Blog Approved",HttpStatus.OK);
-		}
-		else
-		{
-			return new ResponseEntity<String>("Blog Not Approved",HttpStatus.BAD_GATEWAY);
-		}
+		 tempblog.setStatus("A");
+		 boolean isSaved=blogDAO.updateBlog(tempblog);
+		 if(isSaved)
+		 {
+			 return new ResponseEntity<String>("Blog approved",HttpStatus.OK);
+			}
+			else
+			{
+				return new ResponseEntity<String>("Blog not approved",HttpStatus.BAD_REQUEST);
+			}
 	}
 	@GetMapping(value="/rejectBlog/{bid}")
 	public ResponseEntity<String> rejectBlog(@PathVariable("bid")int blogid)
 	{
 		Blog tempblog=blogDAO.getBlog(blogid);
-		if(blogDAO.rejectBlog(tempblog))
-		{
-			return new ResponseEntity<String>("Blog rejected succesfully",HttpStatus.OK);
-		}
-		else
-		{
-			return new ResponseEntity<String>("Blog not rejected",HttpStatus.BAD_REQUEST);
-		}
+		tempblog.setStatus("R");
+		 boolean isSaved=blogDAO.updateBlog(tempblog);
+		 if(isSaved)
+		 {
+			 return new ResponseEntity<String>("Blog rejected",HttpStatus.OK);
+			}
+			else
+			{
+				return new ResponseEntity<String>("Blog not rejected",HttpStatus.BAD_REQUEST);
+			}
 	}
 	
 	@GetMapping(value="/getBlog/{bid}")
@@ -116,7 +121,10 @@ public class BlogController {
 	}
 	@GetMapping(value="/getBlogComments/{blogid}")
 	public ResponseEntity<List<BlogComment>> getBlogComments(@PathVariable("blogid")int blogid){
+		System.out.println("Getting Blog Comments Check");
 		List<BlogComment> blogc=(List<BlogComment>)blogDAO.getAllBlogComments(blogid);
+		System.out.println("Getting Blog Comments");
+		System.out.println(blogc);
 		if(blogc.isEmpty()){
 			return null;
 		}
@@ -125,7 +133,14 @@ public class BlogController {
 		return new ResponseEntity<List<BlogComment>>(blogc,HttpStatus.OK);
 		}
 	}
-			
+	
+	@GetMapping(value="/getBlogReq")
+	public List<Blog> getBlogReq(){
+	 System.out.println("Fetching Blog Req");
+		List<Blog> blogreq=(List<Blog>)blogDAO.blogRequest();
+		System.out.println("Forum Req");
+		return blogreq;		
+} 
 	
 	
 }

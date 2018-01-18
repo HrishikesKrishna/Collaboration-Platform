@@ -16,9 +16,11 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.hk.AirChatBackEnd.Dao.BlogDAO;
 import com.hk.AirChatBackEnd.Dao.ForumDAO;
+import com.hk.AirChatBackEnd.Dao.JobDAO;
 import com.hk.AirChatBackEnd.Dao.UserDAO;
 import com.hk.AirChatBackEnd.DaoImplementation.BlogDAOImpl;
 import com.hk.AirChatBackEnd.DaoImplementation.ForumDAOImpl;
+import com.hk.AirChatBackEnd.DaoImplementation.JobDAOImpl;
 import com.hk.AirChatBackEnd.DaoImplementation.UserDAOImpl;
 import com.hk.AirChatBackEnd.Models.Blog;
 import com.hk.AirChatBackEnd.Models.BlogComment;
@@ -103,6 +105,13 @@ public class DatabaseConfiguration {
 			    {
 			    	System.out.println("ForumDao object created");
 			    	return new ForumDAOImpl(sf);
+			    }
+			    @Autowired
+			    @Bean(name="jobDao")
+			    public JobDAO getJobDAO(SessionFactory sf )
+			    {
+			    	System.out.println("Job Dao object created");
+			    	return new JobDAOImpl(sf);
 			    }
 			    
 			    

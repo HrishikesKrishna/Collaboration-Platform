@@ -15,22 +15,30 @@
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="#/!">AirChat</a></li>
-      <li data-ng-show="!currentUser.emailId">
-      <a href="#/login">Login</a>
-      </li>
       <li data-ng-show="currentUser.emailId">
       <a href="#/blog">BLOG</a></li>
       <li data-ng-show="currentUser.emailId">
       <a href="#/forum">FORUM</a></li>
-      <li data-ng-show="currentUser.emailId">
-      <a href="#/friends">FRIENDS</a></li>
+     <!--  <li data-ng-show="currentUser.emailId">
+      <a href="#/friends">FRIENDS</a></li> -->
+      <li data-ng-show="currentUser.role=='ROLE_ADMIN'">
+      <a href="#/manage">MANAGE</a></li>
+      <li data-ng-show="currentUser.role=='ROLE_USER'">
+      <a href="#/jobsoffer">JOBS</a></li>
+      <li data-ng-show="currentUser.role=='ROLE_ADMIN'">
+      <a href="#/createjob">JOBS</a></li>
       </ul>
-      
     
     
     <ul class="nav navbar-nav navbar-right">
-    	<li data-ng-show="currentUser.emailId"><a>{{currentUser.emailId}}</a></li>
+     	<li data-ng-show="!currentUser.emailId">
+     	<a href="#/login">Login</a></li>
+    	<li data-ng-show="currentUser.emailId">
+    	<a href="#/myspace">{{currentUser.emailId}}</a></li>
+    	<li data-ng-show="currentUser.emailId">
+        <a href="#/chat">CHAT</a></li>
     	<li data-ng-show="currentUser.emailId" data-ng-click="logout()" data-ng-controller="UserController"><a href="">Logout</a></li>
+  	
     </ul>
     
   </div>
@@ -41,12 +49,19 @@
 <!-- Latest compiled and minified JavaScript -->
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.3/lodash.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.1/sockjs.js"></script>
+ 	
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.min.js"></script>
 <script src="Resources/angular-cookies.js"></script>
 <script src="Resources/angular-cookies.min.js"></script>
 <script src="RouteConfig.js"></script>
 <script src="BLOG/BlogController.js"></script>
+<script src="CHAT/ChatController.js"></script>
+<script src="CHAT/ChatService.js"></script>
+<script src="JOB/JobController.js"></script>
 <script src="USER/UserController.js"></script>
 <script src="FORUM/ForumController.js"></script>
 </body></html>

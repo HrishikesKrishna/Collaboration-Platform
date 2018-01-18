@@ -1,0 +1,48 @@
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<div data-ng-controller='ForumController'>
+<div class="col-md-12">
+	<div class="w3-grey" style="margin-top:2vh;">
+    <header class="w3-container w3-grey">
+      <h3>{{forumbyid.forumName}}</h3>
+    </header>
+
+    <div class="w3-container w3-white">
+      <p>{{forumbyid.forumContent}}</p>
+    </div>
+    </div>
+    </div>
+    <div class="row">
+    <div class="container">
+    <div class="col-md-8">
+                		<div class="form-group">
+                		<form class="col-sm-12" data-ng-submit="addForumComment()">
+                            <input type="text" class="form-control" name="Forum Comment" autocomplete="off" id="Forum Comment" placeholder="Write" data-ng-model="ForumComment.forumcomment">
+                  			<p align="right">
+                  			<button class="btn btn" type="submit">Write</button>
+                  			</p>
+                  			</form>
+                  		</div>
+                  	</div>
+                  	</div>
+                  	</div>
+    
+    <div data-ng-repeat="fcomment in forumcomm">
+ <div class="row">
+ <div class="container">
+<div class="col-md-8">
+<div class="panel panel-default">
+<div class="panel-heading">
+<strong>{{fcomment.username}}</strong> <span class="text-muted">wrote on {{fcomment.commentDate}}</span>
+</div>
+<div class="panel-body">
+{{fcomment.forumcomment}}
+</div><!-- /panel-body -->
+</div><!-- /panel panel-default -->
+</div><!-- /col-sm-5 -->
+  
+  </div>
+  </div>
+</div>
+                  	
+                  	</div>
+                    

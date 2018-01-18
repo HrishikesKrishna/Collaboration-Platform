@@ -1,0 +1,20 @@
+<div class="row"  id="cover">
+     <div class="col-md-11">
+    <div class="media">
+                              <div class="media-left">
+                              <br>
+                              <img data-ng-src="http://localhost:8080/AirChatFrontEnd/WebContent/IMAGES/{{currentUser.image}}"  style="width:100px;height:100px">
+                              <form method="POST" enctype="multipart/form-data" action="http://localhost:8080//AirChatMiddleWare/user/upload">
+                    <input type="file" name="uploadedFile" value="Profile pic">
+                    <input type="submit" value="UPLOAD">
+             </form>
+                              </div>
+                            <div class="media-right" style="margin-left:100px">
+                            <h2>{{currentUser.firstName}}   {{currentUser.lastName}}</h2>
+                            <h2>{{currentUser.emailId}}</h2>
+                            <b>Edit details</b>
+                          
+            </div>
+          </div>
+      </div>
+</div>

@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <div data-ng-controller='BlogController'>
-<div class="col-md-12">	<div class="w3-grey" style="margin-top:2vh;">
+<div class="col-md-12">
+	<div class="w3-grey" style="margin-top:2vh;">
     <header class="w3-container w3-grey">
       <h3>{{blogbyid.blogname}}</h3>
     </header>
@@ -8,9 +9,13 @@
     <div class="w3-container w3-white">
       <p>{{blogbyid.blogcontent}}</p>
     </div>
-<div class="col-md-6">
+    </div>
+    </div>
+    <div class="row">
+    <div class="container">
+    <div class="col-md-8">
                 		<div class="form-group">
-                		<form class=""col s12" data-ng-submit="addBlogComment()">
+                		<form class="col-sm-12" data-ng-submit="addBlogComment()">
                             <input type="text" class="form-control" name="Blog Comment" autocomplete="off" id="Blog Comment" placeholder="Enter Comment" data-ng-model="BlogComment.comment">
                   			<p align="right">
                   			<button class="btn btn" type="submit">Comment</button>
@@ -18,8 +23,11 @@
                   			</form>
                   		</div>
                   	</div>
+                  	</div>
+                  	</div>
+                  	
                        
-          <div data-ng-repeat="bcomment in blogcomm">
+      <!--     <div data-ng-repeat="bcomment in blogcomm">
                     <section class="post-heading">
                     <div class="row">
               	     <div class="col-md-11">
@@ -39,11 +47,22 @@
                
                
                                 
+</div> -->
+ 
+ <div data-ng-repeat="bcomment in blogcomm">
+ <div class="row">
+ <div class="container">
+<div class="col-md-8">
+<div class="panel panel-default">
+<div class="panel-heading">
+<strong>{{bcomment.userName}}</strong> <span class="text-muted">commented  {{bcomment.commentDate}}</span>
 </div>
- 
- 
- 
+<div class="panel-body">
+{{bcomment.comment}}
+</div><!-- /panel-body -->
+</div><!-- /panel panel-default -->
+</div><!-- /col-sm-5 -->
+  
   </div>
   </div>
-
 </div>

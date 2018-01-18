@@ -20,6 +20,24 @@ myapp.config(["$routeProvider","$locationProvider", function ($routeProvider,$lo
     .when("/viewblog",{
     	templateUrl : "BLOG/BlogRead.html"
     })
+    .when("/manage", {
+        templateUrl : "ADMIN/Manage.html"
+    })
+    .when("/viewforum", {
+        templateUrl : "FORUM/ForumParticipate.html"
+    })
+    .when("/chat",{
+    	templateUrl : "CHAT/Chat.html"
+    })
+    .when("/myspace",{
+    	templateUrl : "USER/MySpace.html"
+    })
+    .when("/jobsoffer",{
+    	templateUrl : "JOB/JobOffers.html"
+    })
+    .when("/createjob",{
+    	templateUrl : "JOB/CreateJob.html"
+    })
     .otherwise({redirectTo: '/'});
     $locationProvider.hashPrefix('');
 }]);

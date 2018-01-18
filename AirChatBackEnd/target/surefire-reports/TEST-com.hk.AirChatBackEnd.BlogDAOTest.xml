@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="7" failures="0" name="com.hk.AirChatBackEnd.BlogDAOTest" time="0.695" errors="0" skipped="7">
+<testsuite tests="7" failures="0" name="com.hk.AirChatBackEnd.BlogDAOTest" time="0.776" errors="0" skipped="7">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_131\jre\bin"/>
@@ -27,7 +27,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="user.variant" value=""/>
     <property name="os.name" value="Windows 8"/>
-    <property name="classworlds.conf" value="C:\Users\USER\workspace\Collaboration Platform\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf1622740268445921536.tmp"/>
+    <property name="classworlds.conf" value="C:\Users\USER\workspace\Collaboration Platform\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf8938811693849729725.tmp"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
     <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_131\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;D:\app\OracleUser\product\12.2.0\dbhome_1\bin;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\PC Connectivity Solution\;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\OpenCL SDK\2.0\bin\x86;C:\Program Files (x86)\Intel\OpenCL SDK\2.0\bin\x64;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Android;C:\Windows\System32;C:\Program Files\Java\jdk1.8.0_131\bin;C:\Program Files\Java\jre1.8.0_131\bin;C:\Program Files\Apache Maven\apache-maven-3.5.2\bin;."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
@@ -61,25 +61,25 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="com.hk.AirChatBackEnd.BlogDAOTest" name="addBlogTest" time="0.099">
+  <testcase classname="com.hk.AirChatBackEnd.BlogDAOTest" name="addBlogTest" time="0.11">
     <skipped/>
   </testcase>
-  <testcase classname="com.hk.AirChatBackEnd.BlogDAOTest" name="getAllBlogTest" time="0.099">
+  <testcase classname="com.hk.AirChatBackEnd.BlogDAOTest" name="getAllBlogTest" time="0.111">
     <skipped/>
   </testcase>
-  <testcase classname="com.hk.AirChatBackEnd.BlogDAOTest" name="updateBlogTest" time="0.099">
+  <testcase classname="com.hk.AirChatBackEnd.BlogDAOTest" name="updateBlogTest" time="0.111">
     <skipped/>
   </testcase>
-  <testcase classname="com.hk.AirChatBackEnd.BlogDAOTest" name="rejectBlogTest" time="0.099">
+  <testcase classname="com.hk.AirChatBackEnd.BlogDAOTest" name="rejectBlogTest" time="0.111">
     <skipped/>
   </testcase>
-  <testcase classname="com.hk.AirChatBackEnd.BlogDAOTest" name="approveBlogTest" time="0.099">
+  <testcase classname="com.hk.AirChatBackEnd.BlogDAOTest" name="approveBlogTest" time="0.111">
     <skipped/>
   </testcase>
-  <testcase classname="com.hk.AirChatBackEnd.BlogDAOTest" name="getblogTest" time="0.1">
+  <testcase classname="com.hk.AirChatBackEnd.BlogDAOTest" name="getblogTest" time="0.111">
     <skipped/>
   </testcase>
-  <testcase classname="com.hk.AirChatBackEnd.BlogDAOTest" name="deleteBlogTest" time="0.1">
+  <testcase classname="com.hk.AirChatBackEnd.BlogDAOTest" name="deleteBlogTest" time="0.111">
     <skipped/>
   </testcase>
 </testsuite>

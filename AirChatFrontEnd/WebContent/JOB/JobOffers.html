@@ -1,0 +1,51 @@
+<style>
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
+
+</style>
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<div data-ng-controller='JobController'>
+<div class="container">
+
+
+<div class="w3-grey " style="width:940px;margin-top:2vh;">
+    <header class="w3-container w3-grey">
+      <h3>Job Offers</h3>
+    </header>
+</div> 
+	
+      <table>
+      <thead>
+      <tr>
+      <th>Profile</th>
+      <th>Description</th>
+      <th>Qualification</th>
+      <th>Posted on</th>
+      </tr>
+      </thead>
+      <tbody>
+  <tr data-ng-repeat="job in jobl">
+    <td>{{job.jobProfile}}</td>
+    <td>{{job.jobDesc}}</td>
+    <td>{{job.qualification}}</td>
+    <td>{{job.postDate}}</td>
+	</tr> 
+</tbody>
+  </table>
+ 
+		
+
+
+</div>
+</div>

@@ -2,6 +2,7 @@ package com.hk.AirChatBackEnd.DaoImplementation;
 
 import java.util.List;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -97,8 +98,8 @@ public class UserDAOImpl implements UserDAO {
 		try
 		{
 			Session ssn=sF.openSession();
-			Query query=ssn.createQuery("from User where emailId='"+user.getEmailId()+"'and password='"+user.getPassword()+"'");
-		
+			Query query=ssn.createQuery("from User where (emailId='"+user.getEmailId()+"'and password='"+user.getPassword()+"') and (status='A')");
+			
 		List<User> usr=(List<User>)query.list();
 		if(usr.isEmpty())
 		{
@@ -135,6 +136,102 @@ public class UserDAOImpl implements UserDAO {
 			System.out.println("inValid User exception"+e.getMessage());
 		}
 		return user;
+	}
+
+	
+	@Override
+	public boolean logincheck(User user) {
+		// TODO Auto-generated method stub
+		try
+		{
+			Session ssn=sF.openSession();
+			Query query=ssn.createQuery("from User where emailId='"+user.getEmailId()+"'and password='"+user.getPassword()+"'");
+
+		List<User> usr=(List<User>)query.list();
+		if(usr.isEmpty())
+		{
+			System.out.println("Invalid user");
+			return false;
+		}
+		else
+		{
+			System.out.println("Valid User");
+			return true;
+		}
+		}
+		catch(Exception e){
+			{
+				System.out.println("Exception inValid User"+e.getMessage());
+				return false;
+			}
+	}
+
+	
+	}
+
+	@Override
+	public boolean emailCheck(User user) {
+		// TODO Auto-generated method stub
+		Session ssn=sF.openSession();
+		Query query=ssn.createQuery("from User where emailId='"+user.getEmailId()+"'");
+		List<User> usr=(List<User>)query.list();
+		if(usr.isEmpty())
+		{	
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
+	@Transactional
+	@Override
+	public List<User> userrequest() {
+		// TODO Auto-generated method stub
+		Session ssn=sF.openSession();
+		List<User> userreq=(List<User>)ssn.createQuery("from User where status='P'").list();
+		ssn.close();
+		return userreq;
+	}
+
+	@Override
+	public boolean approveUser(User user) {
+		// TODO Auto-generated method stub
+		try {
+	  		sF.getCurrentSession().saveOrUpdate(user);
+	  		return true;
+	  	} catch (HibernateException e) {
+	  		// TODO Auto-generated catch block
+	  		e.printStackTrace();
+	  		return false;
+	}
+	}
+
+	@Override
+	public boolean rejectUser(User user) {
+		// TODO Auto-generated method stub
+		try {
+	  		sF.getCurrentSession().saveOrUpdate(user);
+	  		return true;
+	  	} catch (HibernateException e) {
+	  		// TODO Auto-generated catch block
+	  		e.printStackTrace();
+	  		return false;
+	}
+	}
+
+	@Override
+	public boolean saveorupdateUser(User user) {
+		// TODO Auto-generated method stub
+		try
+		{
+			sF.getCurrentSession().saveOrUpdate(user);
+			return true;
+		}
+		catch(Exception e)
+		{
+		return false;
+		}
 	}
 	
 	

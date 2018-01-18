@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -23,7 +24,8 @@ public class Job implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator = "SEQUENCE_NAME")
+	@SequenceGenerator(name = "SEQUENCE_NAME", sequenceName = "SEQUENCE_NAME", allocationSize = 1, initialValue = 1)
 	@Column(name="JobID",nullable=false)
 	private int jobId;
 	@Column(name="JobProfile",nullable=false)
@@ -32,8 +34,6 @@ public class Job implements Serializable {
 	private String jobDesc;
 	@Column(name="JobQualification",nullable=false)
 	private String qualification;
-	@Column(name="Status",nullable=false)
-	private String status;
 	@Column(name="PostedDate",nullable=false)
 	private Date postDate;
 	public int getJobId() {
@@ -59,12 +59,6 @@ public class Job implements Serializable {
 	}
 	public void setQualification(String qualification) {
 		this.qualification = qualification;
-	}
-	public String getStatus() {
-		return status;
-	}
-	public void setStatus(String status) {
-		this.status = status;
 	}
 	public Date getPostDate() {
 		return postDate;
